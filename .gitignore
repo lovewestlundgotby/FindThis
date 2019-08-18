@@ -1,0 +1,5 @@
+# Build directory
+build/
+
+# Clang auto-complete magic
+compile_commands.json
