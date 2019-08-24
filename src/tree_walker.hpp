@@ -4,22 +4,22 @@
 #include "options.hpp"
 #include "printer.hpp"
 
-#include <filesystem>
+#include <boost/filesystem.hpp>
 #include <string>
 #include <vector>
 
 namespace walker
 {
-namespace fs = std::filesystem;
+namespace fs = boost::filesystem;
 
 void walk(printer::Printer inPrinter)
 {
-  std::vector<fs::directory_entry> matches;
+  std::vector<fs::path> matches;
   const std::string current_dir = options::opts.directory;
-  for (const fs::directory_entry& p : fs::recursive_directory_iterator(current_dir))
+  for (fs::recursive_directory_iterator iter(current_dir), end; iter != end; ++iter)
   {
-    matches.push_back(p);
-    inPrinter.print(p.path().string());
+    matches.push_back(iter->path());
+    inPrinter.print(iter->path().string());
   }
 }
 
