@@ -1,28 +1,22 @@
 #include "exit_status.hpp"
-#include "options.hpp"
 #include "parser.hpp"
-#include "printer.hpp"
-#include "tree_walker.hpp"
+#include "walker.hpp"
 
 namespace
 {
-printer::Printer s_printer;
+ft::Walker s_walker;
+ft::Options s_options;
 }  // namespace
 
 int main(const int argc, const char* argv[])
 {
-  int return_value;
-  return_value = parser::parse(argc, argv);
-  if (return_value == EXIT_ERROR)
+  ft::ParseStatus parseStatus = ft::parse(argc, argv, s_options);
+  if (parseStatus == ft::ParseStatus::NO_PATTERN || parseStatus == ft::ParseStatus::UNKNOWN_OPTION)
   {
-    return return_value;
-  }
-  else if (return_value == parser::EXIT_HELP)
-  {
-    return EXIT_FOUND_MATCH;
+    return ft::ExitStatus::FT_ERROR;
   }
 
-  walker::walk(s_printer);
+  s_walker.walk(s_options);
 
-  return return_value;
+  return ft::ExitStatus::FT_SUCCESS;
 }

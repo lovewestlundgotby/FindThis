@@ -1,26 +1,20 @@
 #ifndef PRINTER_HPP_
 #define PRINTER_HPP_
 
-#include <iostream>
+#include "match.hpp"
 
-namespace printer
+#include <vector>
+
+namespace ft
 {
 class Printer
 {
 public:
-  Printer()
-  {
-  }
-  virtual ~Printer()
-  {
-  }
+  Printer();
 
-  void print(const std::string& inMatch)
-  {
-    std::cout << inMatch << std::endl;
-  }
+  void print(const std::vector<Match>& inMatches);
 };
 
-}  // namespace printer
+}  // namespace ft
 
 #endif  // PRINTER_HPP_
