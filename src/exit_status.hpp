@@ -1,11 +1,16 @@
 #ifndef EXIT_STATUS_HPP_
 #define EXIT_STATUS_HPP_
 
-enum exitStatus
+#include "types.hpp"
+
+namespace ft
 {
-  EXIT_FOUND_MATCH = 0,
-  EXIT_NO_MATCH = 1,
-  EXIT_ERROR = 2
+enum ExitStatus : s32
+{
+  FT_SUCCESS,
+  FT_ERROR,
 };
+
+}  // namespace ft
 
 #endif  // EXIT_STATUS_HPP_
