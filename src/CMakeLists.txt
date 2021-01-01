@@ -23,8 +23,7 @@ target_link_libraries(ft ${Boost_LIBRARIES})
 
 target_compile_options(
   ft
-  PRIVATE -std=c++17
-          -Werror
+  PRIVATE -Werror
           -pedantic-errors
           -Wall
           -Wextra
