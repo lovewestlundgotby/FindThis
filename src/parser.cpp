@@ -1,10 +1,9 @@
 #include "parser.hpp"
 
-#include "exit_status.hpp"
-#include "logger.hpp"
 #include "version.hpp"
 
 #include <boost/program_options.hpp>
+#include <boost/program_options/cmdline.hpp>
 #include <boost/program_options/errors.hpp>
 #include <boost/program_options/options_description.hpp>
 #include <boost/program_options/parsers.hpp>
@@ -20,10 +19,10 @@ namespace po = boost::program_options;
 
 namespace
 {
-constexpr char AUTHOR[] = "Love Westlund Gotby";
-constexpr char REPO[] = "https://github.com/lovewestlundgotby/FindThis";
-constexpr char DESCRIPTION[] =
-    "FindThis (ft) recursively searches for files or in files for a regex pattern.";
+constexpr char AUTHOR[]{"Love Westlund Gotby"};
+constexpr char URL[]{"https://github.com/lovewestlundgotby/FindThis"};
+constexpr char DESCRIPTION[]{
+    "FindThis (ft) recursively searches for files or in files for a regex pattern."};
 
 void printUsage(std::ostream& inOutputStream, const po::options_description& inOptions)
 {
@@ -31,10 +30,12 @@ void printUsage(std::ostream& inOutputStream, const po::options_description& inO
   inOutputStream << usage << inOptions << std::endl;
 }
 
-void printHelp(std::ostream& inOutputStream, const po::options_description& inOptions)
+void doPrintHelp(std::ostream& inOutputStream, const po::options_description& inOptions)
 {
-  const std::string description{"ft " FT_VERSION "\n" AUTHOR "\n" URL "\n\n" DESCRIPTION "\n\n"};
-  inOutputStream << description;
+  inOutputStream << "ft " << FT_VERSION << "\n"
+                 << AUTHOR << "\n"
+                 << URL << "\n\n"
+                 << DESCRIPTION << "\n\n";
   printUsage(inOutputStream, inOptions);
 }
 
@@ -59,9 +60,11 @@ ParseStatus parse(const int inArgc, const char* inArgv[], Options& outOptions)
     ("case-sensitive,s", po::bool_switch(&outOptions.caseSensitive), "Search case sensitively");
 
   po::options_description generic("Generic options");
+  bool printHelp{false};
+  bool printVersion{false};
   generic.add_options()
-    ("help,h", "Prints help message.")
-    ("version,V", "Prints version information.");
+    ("help,h", po::bool_switch(&printHelp), "Prints help message.")
+    ("version,V", po::bool_switch(&printVersion), "Prints version information.");
   // clang-format on
 
   po::options_description cmdlineOptions;
@@ -72,22 +75,15 @@ ParseStatus parse(const int inArgc, const char* inArgv[], Options& outOptions)
   p.add("directory", -1);
 
   po::command_line_parser parser{inArgc, inArgv};
-  parser.options(cmdlineOptions).positional(p).allow_unregistered();
+  const int style =
+      (po::command_line_style::allow_short | po::command_line_style::short_allow_adjacent |
+       po::command_line_style::short_allow_next | po::command_line_style::allow_dash_for_short |
+       po::command_line_style::allow_long | po::command_line_style::long_allow_adjacent |
+       po::command_line_style::long_allow_next | po::command_line_style::allow_sticky);
+  parser.options(cmdlineOptions).positional(p).allow_unregistered().style(style);
   po::parsed_options parsedOptions = parser.run();
   po::variables_map vm;
   po::store(parsedOptions, vm);
-
-  if (vm.count("help"))
-  {
-    printHelp(std::cout, cmdlineOptions);
-    return ParseStatus::SUCCESS;
-  }
-
-  if (vm.count("version"))
-  {
-    std::cout << "ft " << FT_VERSION << std::endl;
-    return ParseStatus::SUCCESS;
-  }
 
   try
   {
@@ -98,6 +94,18 @@ ParseStatus parse(const int inArgc, const char* inArgv[], Options& outOptions)
     std::cerr << "error: " << e.what() << "\n\n";
     printUsage(std::cerr, cmdlineOptions);
     return ParseStatus::NO_PATTERN;
+  }
+
+  if (printHelp)
+  {
+    doPrintHelp(std::cout, cmdlineOptions);
+    return ParseStatus::DONT_SEARCH;
+  }
+
+  if (printVersion)
+  {
+    std::cout << "ft " << FT_VERSION << "\n" << COPYRIGHT << std::endl;
+    return ParseStatus::DONT_SEARCH;
   }
 
   const std::vector<std::string> unknownOptions = po::collect_unrecognized(
