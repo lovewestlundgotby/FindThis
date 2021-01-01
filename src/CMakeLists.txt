@@ -12,7 +12,7 @@ set(FIND_THIS_SRC
     log.cpp
     match.cpp
     parser.cpp
-    printer.cpp
+    print.cpp
     walker.cpp)
 
 add_executable(ft ${FIND_THIS_SRC})

@@ -2,21 +2,22 @@
 #define WALKER_HPP_
 
 #include "parser.hpp"
-#include "printer.hpp"
+
+#include "match.hpp"
 
 namespace ft
 {
-class Walker
+namespace walker
 {
-public:
-  Walker();
-
-  void walk(const Options& inOptions);
-
-private:
-  Printer m_printer;
+struct SearchResults
+{
+  std::vector<FileMatch> fileMatches;
+  std::vector<FilenameMatch> filenameMatches;
 };
 
+SearchResults walk(const Options& inOptions);
+
+}  // namespace walker
 }  // namespace ft
 
 #endif  // TREE_WALKER_HPP_

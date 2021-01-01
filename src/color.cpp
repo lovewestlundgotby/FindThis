@@ -22,11 +22,20 @@ bool printingToTerminal(std::ostream& inStream)
   }
   return isatty(fileno(stream));
 }
+
 }  // namespace
 
 std::ostream& operator<<(std::ostream& outStream, const Color inColor)
 {
-  if (printingToTerminal(outStream))
+  static bool firstUse = true;
+  static bool isPrintingToTerminal;
+  if (firstUse)
+  {
+    firstUse = false;
+    isPrintingToTerminal = printingToTerminal(outStream);
+  }
+
+  if (isPrintingToTerminal)
   {
     return outStream << "\033[" << static_cast<int>(inColor) << "m";
   }

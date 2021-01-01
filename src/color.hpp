@@ -7,6 +7,14 @@ namespace ft
 {
 enum class Color : int
 {
+  RESET = 0,
+
+  // Type settings.
+  BOLD = 1,
+  NO_BOLD = 21,
+  UNDERLINE = 4,
+  NO_UNDERLINE = 24,
+
   // Foreground.
   FG_BLACK = 30,
   FG_RED = 31,
