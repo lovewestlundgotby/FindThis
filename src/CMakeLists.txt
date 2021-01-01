@@ -46,3 +46,8 @@ target_compile_options(
           -Wswitch-enum
           -Wuseless-cast
           -pedantic-errors)
+
+if(ENABLE_PROFILING)
+  target_compile_options(ft PRIVATE -pg)
+  target_link_options(ft PRIVATE -pg)
+endif()
