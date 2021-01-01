@@ -23,10 +23,26 @@ target_link_libraries(ft ${Boost_LIBRARIES})
 
 target_compile_options(
   ft
-  PRIVATE -Werror
-          -pedantic-errors
-          -Wall
-          -Wextra
+  PRIVATE -Wall
+          -Wcast-qual
           -Wconversion
+          -Wctor-dtor-privacy
+          -Wdisabled-optimization
+          -Wduplicated-branches
+          -Wduplicated-cond
+          -Weffc++
+          -Werror
+          -Werror
+          -Wextra
+          -Wformat=2
+          -Wlogical-op
+          -Wmissing-declarations
+          -Wmissing-include-dirs
+          -Wold-style-cast
+          -Wredundant-decls
+          -Wshadow
           -Wsign-conversion
-          -Wswitch-enum)
+          -Wswitch-default
+          -Wswitch-enum
+          -Wuseless-cast
+          -pedantic-errors)
