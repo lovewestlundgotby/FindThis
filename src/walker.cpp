@@ -3,7 +3,6 @@
 #include "match.hpp"
 #include "parser.hpp"
 #include "printer.hpp"
-#include "types.hpp"
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/directory.hpp>
@@ -41,8 +40,8 @@ std::vector<MatchPosition> searchString(const std::string& inString, const xp::s
   for (; regexIterator != regexEnd; ++regexIterator)
   {
     const xp::smatch& match = *regexIterator;
-    s32 a = static_cast<s32>(match[0].first - inString.begin());
-    s32 b = static_cast<s32>(match[0].second - inString.begin());
+    int a = static_cast<int>(match[0].first - inString.begin());
+    int b = static_cast<int>(match[0].second - inString.begin());
     matchPositions.emplace_back(a, b);
   }
 

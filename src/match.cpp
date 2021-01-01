@@ -30,7 +30,7 @@ std::ostream& operator<<(std::ostream& outStream, const Match& inMatch)
 
   if (mps.size() > 1)
   {
-    for (u32 mpIdx = 1; mpIdx < mps.size(); ++mpIdx)
+    for (unsigned int mpIdx = 1; mpIdx < mps.size(); ++mpIdx)
     {
       const MatchPosition& mp = mps[mpIdx];
       const MatchPosition& previousMP = mps[mpIdx - 1];

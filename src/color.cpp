@@ -1,7 +1,5 @@
 #include "color.hpp"
 
-#include "types.hpp"
-
 #include <iostream>
 #include <ostream>
 #include <cstdio>
@@ -30,7 +28,7 @@ std::ostream& operator<<(std::ostream& outStream, const Color inColor)
 {
   if (printingToTerminal(outStream))
   {
-    return outStream << "\033[" << static_cast<s32>(inColor) << "m";
+    return outStream << "\033[" << static_cast<int>(inColor) << "m";
   }
   else
   {

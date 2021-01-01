@@ -2,7 +2,6 @@
 
 #include "exit_status.hpp"
 #include "logger.hpp"
-#include "types.hpp"
 #include "version.hpp"
 
 #include <boost/program_options.hpp>
@@ -41,7 +40,7 @@ void printHelp(std::ostream& inOutputStream, const po::options_description& inOp
 
 }  // namespace
 
-ParseStatus parse(const s32 inArgc, const char* inArgv[], Options& outOptions)
+ParseStatus parse(const int inArgc, const char* inArgv[], Options& outOptions)
 {
   // clang-format off
   po::options_description arguments("Positional arguments");
@@ -106,7 +105,7 @@ ParseStatus parse(const s32 inArgc, const char* inArgv[], Options& outOptions)
   if (!unknownOptions.empty())
   {
     std::cout << "Unknown options:\n";
-    for (u32 i = 0; i < unknownOptions.size(); ++i)
+    for (unsigned int i = 0; i < unknownOptions.size(); ++i)
     {
       std::cout << unknownOptions[i];
       if (i < unknownOptions.size() - 1)

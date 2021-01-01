@@ -1,13 +1,11 @@
 #ifndef COLOR_HPP_
 #define COLOR_HPP_
 
-#include "types.hpp"
-
 #include <ostream>
 
 namespace ft
 {
-enum class Color : s32
+enum class Color : int
 {
   // Foreground.
   FG_BLACK = 30,

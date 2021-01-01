@@ -1,8 +1,6 @@
 #ifndef MATCH_HPP_
 #define MATCH_HPP_
 
-#include "types.hpp"
-
 #include <ostream>
 #include <string>
 #include <utility>
@@ -10,7 +8,7 @@
 
 namespace ft
 {
-using MatchPosition = std::pair<u32, u32>;
+using MatchPosition = std::pair<unsigned int, unsigned int>;
 
 class Match
 {

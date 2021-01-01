@@ -1,8 +1,6 @@
 #ifndef PARSER_HPP_
 #define PARSER_HPP_
 
-#include "types.hpp"
-
 #include <string>
 #include <vector>
 
@@ -31,7 +29,7 @@ public:
   bool caseSensitive;
 };
 
-ParseStatus parse(const s32 inArgc, const char* inArgv[], Options& outOptions);
+ParseStatus parse(const int inArgc, const char* inArgv[], Options& outOptions);
 
 }  // namespace ft
 
