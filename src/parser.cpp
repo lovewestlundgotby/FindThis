@@ -34,8 +34,7 @@ void printUsage(std::ostream& inOutputStream, const po::options_description& inO
 
 void printHelp(std::ostream& inOutputStream, const po::options_description& inOptions)
 {
-  const std::string description =
-      "ft " + getVersion() + "\n" + AUTHOR + "\n" + REPO + "\n\n" + DESCRIPTION + "\n\n";
+  const std::string description{"ft " FT_VERSION "\n" AUTHOR "\n" URL "\n\n" DESCRIPTION "\n\n"};
   inOutputStream << description;
   printUsage(inOutputStream, inOptions);
 }
@@ -87,7 +86,7 @@ ParseStatus parse(const s32 inArgc, const char* inArgv[], Options& outOptions)
 
   if (vm.count("version"))
   {
-    std::cout << "ft " << getVersion() << std::endl;
+    std::cout << "ft " << FT_VERSION << std::endl;
     return ParseStatus::SUCCESS;
   }
 

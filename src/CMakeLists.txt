@@ -11,6 +11,8 @@ set(FIND_THIS_SRC main.cpp color.cpp match.cpp parser.cpp printer.cpp
 
 add_executable(ft ${FIND_THIS_SRC})
 
+ft_generate_header(NAME version.hpp.in LINK_TARGETS ft)
+
 target_link_libraries(ft ${Boost_LIBRARIES})
 
 target_compile_options(
