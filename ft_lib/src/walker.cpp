@@ -1,10 +1,10 @@
-#include "walker.hpp"
+#include <ft/walker.hpp>
 
 #include "log.hpp"
 #include "macros.hpp"
 
-#include "match.hpp"
-#include "parser.hpp"
+#include <ft/match.hpp>
+#include <ft/parser.hpp>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/directory.hpp>

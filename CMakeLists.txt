@@ -11,4 +11,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include(cmake/ft_generate_header.cmake)
 
-add_subdirectory(src)
+add_subdirectory(ft_bin)
+add_subdirectory(ft_lib)

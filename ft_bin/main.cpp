@@ -1,7 +1,7 @@
-#include "exit_status.hpp"
-#include "parser.hpp"
-#include "print.hpp"
-#include "walker.hpp"
+#include <ft/exit_status.hpp>
+#include <ft/parser.hpp>
+#include <ft/print.hpp>
+#include <ft/walker.hpp>
 
 int main(const int argc, const char* argv[])
 {

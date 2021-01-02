@@ -1,4 +1,4 @@
-#include "parser.hpp"
+#include <ft/parser.hpp>
 
 #include "version.hpp"
 
@@ -22,7 +22,8 @@ namespace
 constexpr char AUTHOR[]{"Love Westlund Gotby"};
 constexpr char URL[]{"https://github.com/lovewestlundgotby/FindThis"};
 constexpr char DESCRIPTION[]{
-    "FindThis (ft) recursively searches for files or in files for a regex pattern."};
+    "FindThis (ft) recursively searches for files or "
+    "in files for a regex pattern."};
 
 void printUsage(std::ostream& inOutputStream, const po::options_description& inOptions)
 {

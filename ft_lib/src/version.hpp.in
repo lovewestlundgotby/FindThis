@@ -11,4 +11,4 @@
 
 #define COPYRIGHT "Copyright (c) 2020-2020 Love Westlund Gotby"
 
-#endif  // VERSION_HPP_
+#endif // VERSION_HPP_
