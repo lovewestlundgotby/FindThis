@@ -1,5 +1,8 @@
 # Build directory
 build/
 
+# clangd cache
+.cache
+
 # Clang auto-complete magic
 compile_commands.json

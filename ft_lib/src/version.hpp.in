@@ -1,0 +1,14 @@
+#ifndef VERSION_HPP_
+#define VERSION_HPP_
+
+// clang-format off
+#define FT_VERSION_MAJOR @FindThis_VERSION_MAJOR@
+#define FT_VERSION_MINOR @FindThis_VERSION_MINOR@
+#define FT_VERSION_PATCH @FindThis_VERSION_PATCH@
+// clang-format on
+
+#define FT_VERSION "@FindThis_VERSION@"
+
+#define COPYRIGHT "Copyright (c) 2020-2020 Love Westlund Gotby"
+
+#endif // VERSION_HPP_

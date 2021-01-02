@@ -1,7 +1,5 @@
 #include "color.hpp"
 
-#include "types.hpp"
-
 #include <iostream>
 #include <ostream>
 #include <cstdio>
@@ -24,13 +22,22 @@ bool printingToTerminal(std::ostream& inStream)
   }
   return isatty(fileno(stream));
 }
+
 }  // namespace
 
 std::ostream& operator<<(std::ostream& outStream, const Color inColor)
 {
-  if (printingToTerminal(outStream))
+  static bool firstUse = true;
+  static bool isPrintingToTerminal;
+  if (firstUse)
   {
-    return outStream << "\033[" << static_cast<s32>(inColor) << "m";
+    firstUse = false;
+    isPrintingToTerminal = printingToTerminal(outStream);
+  }
+
+  if (isPrintingToTerminal)
+  {
+    return outStream << "\033[" << static_cast<int>(inColor) << "m";
   }
   else
   {
